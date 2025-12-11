@@ -9,18 +9,30 @@ class Coche {
     private String modelo;
     private int velocidad;
 
-    // Constructor COMPLETAR
-    
-    
-    // Método acelerar (suma +10) COMPLETAR
-   
+    public Coche(String marca, int velocidad, String modelo) {
+        this.marca = marca;
+        this.velocidad = velocidad;
+        this.modelo = modelo;
+    }
 
-    // Método frenar (resta -10 y nunca menor que 0) COMPLETAR
-   
+    // Método acelerar (suma +10)
+    public void acelerar() {
+        velocidad += 10;
+    }
 
-    // Método mostrarDatos COMPLETAR
-    
+    // Método frenar (resta -10 y nunca menor que 0)
+    public void frenar() {
+        velocidad -= 10;
+        if (velocidad < 0) {
+            velocidad = 0;
+        }
+    }
 
+
+    // Método mostrarDatos
+    public void mostrarDatos() {
+        System.out.println("Marca: " + marca + ", Modelo: " + modelo + ", Velocidad: " + velocidad + " km/h");
+    }
 }
 
 
@@ -30,27 +42,43 @@ class Coche {
 // Deja todo lo necesario para que el alumno complete.
 //
 
-
 import java.util.ArrayList;
 
 class Alumno {
     private String nombre;
     private ArrayList<Integer> notas;
 
-    // Constructor COMPLETAR
-   
+    // Constructor
+    public Alumno(String nombre) {
+        this.nombre = nombre;
+        this.notas = new ArrayList<>();
+    }
 
-    // Método añadirNota COMPLETAR
-   
+    // Método añadirNota
+    public void anadirNota(int nota) {
+        notas.add(nota);
+    }
 
-    // Método calcularMedia COMPLETAR
+    // Método calcularMedia
+    public double calcularMedia() {
+        if (notas.isEmpty()) {
+            System.out.println("No hay notas");
+        }
+        int suma = 0;
+        for (int nota : notas) {
+            suma += nota;
+        }
+        return (double) suma / notas.size();
+    }
     
 
-    // Método mostrarInfo COMPLETAR
-    
+    // Método mostrarInfo
+    public void mostrarInfo() {
+        System.out.println("Alumno: " + nombre);
+        System.out.println("Notas: " + notas);
+        System.out.println("Media: " + calcularMedia());
+    }
 }
-
-
 
 
 // La CuentaBancaria debe tener titular, saldo y métodos
@@ -58,27 +86,38 @@ class Alumno {
 // Añade control para no permitir saldo negativo.
 //
 
-
 class CuentaBancaria {
+    // atributos
+    private String titular;
+    private double saldo;
 
-    // atributos COMPLETAR
-    
+    // constructor
+    public CuentaBancaria(String titular, double saldoInicial) {
+        this.titular = titular;
+        this.saldo = (saldoInicial >= 0) ? saldoInicial : 0;
+    }
 
-    // constructor COMPLETAR
-    
+    // método ingresar
+    public void ingresar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+        }
+    }
 
-    // método ingresar COMPLETAR
-   
+    // método retirar
+    public void retirar(double cantidad) {
+        if (cantidad > 0 && saldo >= cantidad) {
+            saldo -= cantidad;
+        } else {
+            System.out.println("No se puede retirar: saldo insuficiente o cantidad inválida.");
+        }
+    }
 
-    // método retirar COMPLETAR
-   
-
-    // método mostrarSaldo COMPLETAR
-    
+    // método mostrarSaldo
+    public void mostrarSaldo() {
+        System.out.println("Titular: " + titular + ", Saldo: " + saldo + " €");
+    }
 }
-
-
-
 
 // Clase Libro: titulo, autor, disponible.
 // Clase Biblioteca: ArrayList<Libro>, métodos añadirLibro,
@@ -87,18 +126,54 @@ class CuentaBancaria {
 //
 
 
+package clases;
+
+// Clase Libro: titulo, autor, disponible.
 class Libro {
+    // atributos
+    private String titulo;
+    private String autor;
+    private boolean disponible;
 
-    // atributos COMPLETAR
-    
-    
-    // constructor COMPLETAR
-   
+    // constructor
+    public Libro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponible = true;
+    }
 
-    // método mostrarInfo COMPLETAR
-    
+    // método mostrarInfo
+    public void mostrarInfo() {
+        System.out.println("Título: " + titulo + ", Autor: " + autor + ", Disponible: " + (disponible ? "Sí" : "No"));
+    }
+
+    // Getters and setters
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
 }
 
+//_________________________//
 
 
 class Biblioteca {
